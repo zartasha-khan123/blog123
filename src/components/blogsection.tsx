@@ -20,27 +20,9 @@ function BlogSection() {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const data = await client.fetch(`
-          *[_type == 'landingpage'][0].sections[0]{
-            cards[] {
-              'image': image.asset->url,
-              'heading': heading,
-              'date': date,
-              'description': description,
-              'href': link 
-            }
-          }
-        `);
-
-        console.log("Sanity Cards Data:", data?.cards); // Debugging
-        setCards(data?.cards || []); // Handle empty results
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+      const res : any= await fetchData()
+      setCards(res)
+    }
 
     fetchData();
   }, [cards]);
